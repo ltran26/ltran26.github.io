@@ -5,45 +5,41 @@ sequenceDiagram
     participant Firewall
     participant Webserver
 
-    Attacker->>Botnet: Command to initiate attack
-    Botnet->>Firewall: Flood of malicious requests
-    Firewall->>Webserver: Requests that pass initial filter
-    Webserver->>Firewall: Server overload notification
-    Firewall->>Firewall: Analyze traffic patterns
-    Firewall->>Botnet: Mitigation attempts (e.g., blocking IPs)
-    Botnet->>Firewall: Continued adaptive flooding
-    Firewall->>Attacker: Identifying and tracing attack source
+    Attacker->>Botnet: 1. Command to initiate attack
+    Botnet->>Firewall: 2. Flood server with tons of malicious/invalid requests
+    Firewall->>Webserver: 3. Filters incoming requests and pass those that meet with initial criteria.
+    Webserver->>Firewall: 4. Notifies server overload and begin defensive maneuvers
+    Firewall->>Botnet: 5. Mitigation attempts 
+    Firewall->>Attacker: 6. Identifying and tracing Attackers
 ```
 
 
-1. **Command to initiate attack:**
-   - The Attacker sends commands to the Botnet, a network of compromised systems, instructing them to begin the DDoS attack.
-   - The Attacker coordinates the attack and defines the target, ensuring the attack is synchronized for maximum impact.
+Before we explain the diagram, let's define our players.
 
-2. **Flood of malicious requests:**
-   - The Botnet, consisting of many infected devices, sends a flood of requests to the Firewall.
-   - These requests are designed to overwhelm the server, consuming its resources and causing legitimate traffic to be denied service.
+Attacker - Botnet Operator
 
-3. **Requests that pass initial filter:**
-   - The Firewall, acting as the first line of defense, filters incoming traffic to identify and block malicious patterns.
-   - Some requests may bypass the initial filtering, reaching the Webserver.
+Botnet - a network of private computers infected with malicious softwares and controlled without the owner's knowledge.
 
-4. **Server overload notification:**
+Firewall - a part of a computer system or network which is designed to block unauthorized access while permitting outward communication
+
+Webserver - a computer system that hosts websites and delivers web content to users
+
+1. Command to initiate attack:
+   - The Attacker sends commands to the Botnet, telling them to begin the DDoS attack. The attack is coordinated for maximum damage and effectiveness.
+
+2. Flood of malicious requests:
+   - The Botnet sends a huge amount of requests to the Firewall, aiming to overload the Webserver and consuming its resources, causing valid or legitimate traffic to be denied. Hence the name, distributed denial-of-service.
+   
+
+3. Requests that pass initial filter:
+   - The Firewall, acting as the first line of defense, filters incoming traffic to identify and block malicious patterns. However, since there are so many, a lot requests may bypass the initial filtering and reach the Webserver.
+
+4. Server overload:
    - The Webserver detects that it is being overwhelmed and sends a notification to the Firewall.
-   - This feedback helps the Firewall refine its defense mechanisms.
 
-5. **Analyze traffic patterns:**
-   - The Firewall analyzes traffic patterns to identify unusual behaviors, such as excessive requests from specific IP addresses or regions.
-   - This step helps in dynamically updating filtering rules.
+5. Mitigation attempts (e.g., blocking IPs):
+   - Depending on the mitigation strategies, the firewall will beging to block IPs, access control lists, traffic analysis and monitoring, etc... These actions aim to reduce the attack's impact and restore normal operation.
 
-6. **Mitigation attempts (e.g., blocking IPs):**
-   - Based on the analysis, the Firewall blocks IPs associated with malicious traffic or applies rate limiting.
-   - These actions aim to reduce the attack's impact and restore normal operation.
 
-7. **Continued adaptive flooding:**
-   - The Botnet adapts to the defensive measures by changing attack vectors, such as varying IP addresses or request patterns.
-   - This ongoing battle tests the Firewall's adaptability.
-
-8. **Identifying and tracing attack source:**
-   - The Firewall attempts to trace the source of the attack, identifying command-and-control servers or the Attacker.
-   - This information can be used for legal actions or to further strengthen defenses.
+6. Identifying and tracing attack source:
+   - The Firewall attempts to trace the source of the attack, identifying the Attacker and collect information on the Attacker.
